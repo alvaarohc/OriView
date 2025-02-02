@@ -9,7 +9,13 @@
   --color-accent-dark: #bfa5ff;
 }
 
-
 body {
-    @apply bg-secondary;
+  @apply bg-secondary;
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    var(--color-secondary-dark) 0%,
+    var(--color-accent) 160%
+  );
 }
