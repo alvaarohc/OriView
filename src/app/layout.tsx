@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "EndureInsight - Data-Driven Insights for Athletes.",
-  description: "Data-Driven Insights for Athletes.",
+  title: 'OriView - Into the Stars',
+  description: 'Discover, track, and share astronomical events.',
+  icons: {
+    icon: '/oriview-logo.jpg',
+  },
 };
 
 export default function RootLayout({
@@ -13,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
