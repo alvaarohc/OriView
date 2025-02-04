@@ -12,10 +12,3 @@
 body {
   @apply bg-secondary;
 }
-
-.hero-gradient {
-  background: linear-gradient(
-    var(--color-secondary-dark) 0%,
-    var(--color-accent) 160%
-  );
-}
