@@ -1,5 +1,6 @@
-import Stars from "./Stars";
+'use client';
 
+import Stars from "./Stars";
 
 export default function Hero() {
   return (
