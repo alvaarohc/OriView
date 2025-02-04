@@ -15,7 +15,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="relative flex justify-between items-center py-4 px-10.5">
+    <header className="flex justify-between items-center py-4 px-10.5">
       <div className="absolute w-65 h-65 bg-secondary-light rounded-full blur-2xl -right-15 -top-30 -z-10"></div>
       <div className="flex items-center gap-3">
         <Image
