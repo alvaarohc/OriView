@@ -3,6 +3,7 @@
 @theme {
   --color-primary: #30343f;
   --color-secondary: #273469;
+  --color-secondary-light: #505a83;
   --color-secondary-dark: #1e2749;
   --color-text: #fafaff;
   --color-accent: #e4d9ff;
@@ -12,6 +13,8 @@
 body {
   @apply bg-secondary;
 }
+
+/* METEORS */
 
 @keyframes meteor {
   0% {
@@ -30,8 +33,8 @@ body {
 .meteor {
   position: absolute;
   width: 2px;
-  height: 100px;
+  height: 300px;
   background: linear-gradient(white, rgba(255, 255, 255, 0));
-  animation: meteor 3s linear infinite;
+  animation: meteor 5s linear infinite;
   border-radius: 10px;
 }

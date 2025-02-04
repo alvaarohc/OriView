@@ -15,7 +15,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex justify-between items-center bg-secondary-dark p-6">
+    <header className="relative flex justify-between items-center py-4 px-10.5">
+      <div className="absolute w-65 h-65 bg-secondary-light rounded-full blur-2xl -right-15 -top-30 -z-10"></div>
       <div className="flex items-center gap-3">
         <Image
           className="rounded-lg"
@@ -40,6 +41,10 @@ export default function Header() {
           </Link>
         ))}
       </nav>
+
+      <button className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg">
+        Sign up
+      </button>
     </header>
   );
 }
