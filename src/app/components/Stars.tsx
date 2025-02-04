@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 export default function Stars() {
-  const [meteors, setMeteors] = useState<JSX.Element[]>([]);
+  const [meteors, setMeteors] = useState<React.JSX.Element[]>([]);
 
   useEffect(() => {
     const newMeteors = Array.from({ length: 15 }).map((_, index) => (
