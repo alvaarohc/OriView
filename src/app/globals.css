@@ -12,3 +12,27 @@
 body {
   @apply bg-secondary;
 }
+
+@keyframes meteor {
+  0% {
+    transform: scale(0) translateY(0) translateX(0) rotate(140deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1) translateY(50vh) translateX(50vw)  rotate(140deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(100vw) rotate(140deg);
+    opacity: 0;
+  }
+}
+
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(white, rgba(255, 255, 255, 0));
+  animation: meteor 4s linear infinite;
+  border-radius: 10px;
+}
