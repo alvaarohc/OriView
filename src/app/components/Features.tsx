@@ -27,7 +27,7 @@ export default function Features() {
       icon: <IconCalendarEvent size={ICON_SIZE}/>,
     },
     {
-      title: 'Community Interaction',
+      title: 'Community Interaction (soon)',
       description:
         'Connect with fellow astronomy enthusiasts and share experiences',
       icon: <IconUsers size={ICON_SIZE}/>,
