@@ -16,7 +16,6 @@ export default function Header() {
 
   return (
     <header className="flex justify-between items-center py-4 px-10.5">
-      <div className="absolute w-65 h-65 bg-secondary-light rounded-full blur-2xl -right-15 -top-30 -z-10"></div>
       <div className="flex items-center gap-3">
         <Image
           className="rounded-lg"
@@ -25,13 +24,13 @@ export default function Header() {
           width={50}
           height={50}
         />
-        <h1 className="text-2xl font-black text-text">OriView</h1>
+        <h1 className="text-2xl font-black">OriView</h1>
       </div>
 
       <nav className="flex gap-4 items-center ">
         {links.map((link) => (
           <Link
-            className={`font-semibold text-text ${clsx({
+            className={`font-semibold ${clsx({
               'line-through text-text/40': link.href === '/community',
             })}`}
             key={link.href}
