@@ -15,7 +15,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex justify-between items-center py-4 px-10.5">
+    <header className="flex lg:flex-row lg:gap-0 gap-8 flex-col justify-between items-center py-4 px-10.5">
       <div className="flex items-center gap-3">
         <Image
           className="rounded-lg"

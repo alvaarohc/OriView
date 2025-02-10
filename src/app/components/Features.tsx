@@ -27,7 +27,7 @@ export default function Features() {
       icon: <IconCalendarEvent size={ICON_SIZE} />,
     },
     {
-      title: 'Community Interaction (soon)',
+      title: 'Community Interaction',
       description:
         'Connect with fellow astronomy enthusiasts and share experiences',
       icon: <IconUsers size={ICON_SIZE} />,
@@ -37,7 +37,7 @@ export default function Features() {
   return (
     <section className="flex flex-col items-center gap-6 px-18 mb-50">
       <h2 className="text-4xl font-bold">Key features</h2>
-      <div className="flex gap-5 justify-center items-center">
+      <div className="flex lg:flex-row flex-col gap-5 justify-center items-center">
         {features.map((feature) => (
           <FeatureCard key={feature.title} {...feature} />
         ))}

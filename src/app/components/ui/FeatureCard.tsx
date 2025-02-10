@@ -10,7 +10,7 @@ export default function FeatureCard({
   icon,
 }: FeatureCardProps) {
   return (
-    <div className="flex flex-col gap-2 bg-secondary-dark p-11 rounded-lg">
+    <div className="flex justify-center flex-col gap-2 bg-secondary-dark px-14 py-5 rounded-lg max-w-100 xs:h-65 h-80">
       {icon}
       <h2 className="text-2xl font-bold">{title}</h2>
       <p>{description}</p>
