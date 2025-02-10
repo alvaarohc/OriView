@@ -2,6 +2,7 @@ import Header from '@/app/components/Header';
 import Hero from '@/app/components/Hero';
 import Features from '@/app/components/Features';
 import CurrentEvents from './components/CurrentEvents';
+import Cta from './components/CTA';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Features />
       <CurrentEvents />
+      <Cta />
     </>
   );
 }
