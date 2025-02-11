@@ -2,9 +2,10 @@
 
 
 Landing:
+    ☐ Add active state for nav links
+            ☐ Create link component (with a class prop to customize what ever you might need)
     ☐ Change Sign up buttons for <Link /> components
     Header:
-        ☐ Add active state for nav links
         ☐ Cursor ponter for Sign up button
     Features:
         ☐ Card hover effect
