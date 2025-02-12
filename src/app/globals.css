@@ -42,3 +42,16 @@ body {
   animation: meteor 5s linear infinite;
   border-radius: 10px;
 }
+
+/* Event Card hover effects */
+
+.event-card {
+  box-shadow: none;
+  transition: all 300ms ease-out;
+  filter: brightness(100%);
+  cursor: pointer;
+}
+
+.card-container:has(.event-card:hover) .event-card:not(:hover) {
+  filter: brightness(75%);
+}

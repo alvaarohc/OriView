@@ -27,7 +27,7 @@ export default function Header() {
         <h1 className="text-2xl font-black">OriView</h1>
       </div>
 
-      <nav className="flex gap-4 items-center ">
+      <nav className="flex gap-4 items-center">
         {links.map((link) => (
           <Link
             className={`font-semibold ${clsx({
@@ -41,7 +41,7 @@ export default function Header() {
         ))}
       </nav>
 
-      <button className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg">
+      <button className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
         Sign up
       </button>
     </header>
