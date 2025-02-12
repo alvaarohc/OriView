@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/app/components/ui/Link';
 
 type LinkT = {
   name: string;
@@ -27,10 +27,10 @@ export default function Header() {
         <h1 className="text-2xl font-black">OriView</h1>
       </div>
 
-      <nav className="flex gap-4 items-center">
+      <nav className="flex gap-5 items-center link-container">
         {links.map((link) => (
           <Link
-            className={`font-semibold ${clsx({
+            className={`link-effect font-semibold ${clsx({
               'line-through text-text/40': link.href === '/community',
             })}`}
             key={link.href}
