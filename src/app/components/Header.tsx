@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from '@/app/components/ui/Link';
+import NextLink from 'next/link';
 
 type LinkT = {
   name: string;
@@ -41,9 +42,9 @@ export default function Header() {
         ))}
       </nav>
 
-      <button className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
+      <NextLink href='/signup' className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
         Sign up
-      </button>
+      </NextLink>
     </header>
   );
 }

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Cta() {
   return (
     <section className="flex flex-col items-center justify-center gap-6 mb-50 px-20">
@@ -8,12 +10,13 @@ export default function Cta() {
         Share your observations in the community, and never miss an astronomical
         event.
       </p>
-      <button
+      <Link
+        href="/signup"
         type="button"
         className="bg-secondary-dark hover:bg-secondary-light transition-all font-medium rounded-lg px-4 py-2 cursor-pointer"
       >
         Sign up now
-      </button>
+      </Link>
     </section>
   );
 }

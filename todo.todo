@@ -4,7 +4,7 @@
 Landing:
     ✔ Add active state for nav links @done(25-02-12 19:09)
             ✔ Create link component (with a class prop to customize what ever you might need) @done(25-02-12 19:09)
-    ☐ Change Sign up buttons for <Link /> components
+    ✔ Change Sign up buttons for <Link /> components @done(25-02-12 19:15)
     Header:
         ✔ Cursor pointer for Sign up button @done(25-02-12 11:44)
     Events:
