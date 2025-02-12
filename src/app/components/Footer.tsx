@@ -48,7 +48,7 @@ export default function Footer() {
         <p>Into the stars.</p>
         <p className="text-text/75">© 2025 Oriview. All rights reserved.</p>
       </article>
-      <article className="flex gap-35">
+      <article className="flex lg:gap-35 gap-10">
         {/*
          * Iterates over the `linkGroups` array to dynamically generate
          * the link sections in the footer
