@@ -13,3 +13,10 @@ Landing:
         ✔ Add red point with animation @done(25-02-10 18:45)
     Footer:
         ✔ Change gap for links in mobile view @high @done(25-02-12 11:42)
+App:
+    User accounts:
+        sign up/in flow:
+            ☐ Create pages (sign up and sign in)
+            Form:
+                ☐ Add form validation with "react hook form" @critical @due-to:13-02-2025
+                ☐ Create input component @high
