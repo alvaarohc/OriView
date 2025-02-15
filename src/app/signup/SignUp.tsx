@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import FormInput from '../components/ui/FormInput';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -17,23 +18,21 @@ export default function SignUp() {
     <form className="flex flex-col items-center gap-8 py-10 px-8 bg-secondary-dark lg:w-1/2 w-[80%] h-1/2  rounded-lg">
       <h1 className="text-3xl font-black text-center">Sign up</h1>
       <div className="w-full flex flex-col gap-4">
-        <input
+        <FormInput
           type="email"
-          className="w-full bg-secondary-light rounded-md p-2 outline-solid outline-3 outline-transparent focus:outline-accent-dark focus:transition-all duration-350"
           placeholder="Email"
           onChange={handleEmailChange}
           value={email}
         />
-        <input
+        <FormInput
           type="password"
-          className="w-full bg-secondary-light rounded-md p-2 outline-solid outline-3 outline-transparent focus:outline-accent-dark focus:transition-all duration-350"
           placeholder="Password"
           onChange={handlePasswordChange}
           value={password}
         />
-        <input
+        <FormInput
           type="submit"
-          className="w-full outline-none bg-text hover:bg-accent-dark text-secondary font-bold rounded-md p-2 transition-all duration-300"
+          className="w-full outline-none font-bold bg-text hover:bg-accent-dark text-secondary duration-300"
           value="Sign up"
         />
       </div>
