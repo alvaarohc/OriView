@@ -16,7 +16,9 @@ Landing:
 App:
     User accounts:
         sign up/in flow:
-            ☐ Create pages (sign up and sign in)
+            ✔ Create pages (sign up and sign in) @done(25-02-15 20:19)
             Form:
                 ☐ Add form validation with "react hook form" @low @due-to:13-02-2025
                 ☐ Create input component @high
+        Supabase integration:
+            ☐ Add supabase to the project (supabase client and server) @critical
