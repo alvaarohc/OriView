@@ -4,6 +4,8 @@ type FormInputProps = {
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  action?: (formData: FormData) => void | Promise<void>;
+  name?: string;
 };
 
 /**
@@ -15,6 +17,8 @@ export default function FormInput({
   value,
   onChange,
   className,
+  action,
+  name,
 }: FormInputProps) {
   const inputClassName = `w-full bg-secondary-light rounded-md p-2 outline-solid
        outline-3 outline-transparent focus:outline-accent-dark
@@ -27,6 +31,8 @@ export default function FormInput({
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      formAction={action}
+      name={name}
     />
   );
 }

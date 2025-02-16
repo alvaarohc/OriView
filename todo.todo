@@ -19,6 +19,6 @@ App:
             ✔ Create pages (sign up and sign in) @done(25-02-15 20:19)
             Form:
                 ☐ Add form validation with "react hook form" @low @due-to:13-02-2025
-                ☐ Create input component @high
+                ✔ Create input component @high @done(25-02-16 23:25)
         Supabase integration:
-            ☐ Add supabase to the project (supabase client and server) @critical
+            ✔ Add supabase to the project (supabase client and server) @critical @done(25-02-16 23:25)
