@@ -22,3 +22,4 @@ App:
                 ✔ Create input component @high @done(25-02-16 23:25)
         Supabase integration:
             ✔ Add supabase to the project (supabase client and server) @critical @done(25-02-16 23:25)
+            ☐ Fix bad sign in errors

@@ -19,13 +19,18 @@ export async function signin(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   // display a different message than the supabase's default message for missing password
-  if (error && !data.password) {
-    error.message = 'You must provide a password';
-  }
 
   if (error) {
+    let customMessage = 'An error occurred. Please try again.';
+
+    if (error.message.includes('Invalid login credentials')) {
+      customMessage = 'Incorrect email or password.';
+    } else if (error.message.includes('Email not confirmed')) {
+      customMessage = 'You need to verify your email before logging in.';
+    }
+
     return {
-      error,
+      error: { message: customMessage },
     };
   }
 
@@ -52,13 +57,15 @@ export async function signup(formData: FormData) {
    *  display a different message than the supabase's default message
    *  when no information is provided
    */
-  if (error && error.message === 'Anonymous sign-ins are disabled') {
-    error.message = 'You must fill all fields.';
-  }
 
   if (error) {
+    let customMessage = 'An error occurred. Please try again.';
+
+    if (error.message.includes('Anonymous sign-ins are disabled')) {
+      customMessage = 'You must provide an email and password.';
+    }
     return {
-      error,
+      error: { message: customMessage },
     };
   }
 
