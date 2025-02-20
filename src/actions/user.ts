@@ -21,7 +21,7 @@ export async function signin(formData: FormData) {
   // display a different message than the supabase's default message for missing password
 
   if (error) {
-    let customMessage = 'An error occurred. Please try again.';
+    let customMessage = 'An error occurred, please try again.';
 
     if (error.message.includes('Invalid login credentials')) {
       customMessage = 'Incorrect email or password.';
@@ -71,4 +71,12 @@ export async function signup(formData: FormData) {
 
   revalidatePath('/', 'layout');
   redirect('/signin?signupsuccess=true');
+}
+
+export async function getUser() {
+  const supabase = await createClient();
+
+  const { data } = await supabase.auth.getUser();
+
+  return data.user;
 }
