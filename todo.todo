@@ -26,3 +26,7 @@ App:
             ✔ Fix bad sign in errors @done(25-02-19 19:39)
     Dashboard:
         ☐ Add action to get user and redirect to sign in if no session is found
+
+AFTER MVP TASKS:
+    ☐ Page transitions
+    

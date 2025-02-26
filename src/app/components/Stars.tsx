@@ -1,5 +1,7 @@
 'use client';
 
+import { IconDog } from '@tabler/icons-react';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function Stars() {

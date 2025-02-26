@@ -12,6 +12,9 @@
   --color-text: #fafaff;
   --color-accent: #e4d9ff;
   --color-accent-dark: #bfa5ff;
+
+  --inset-shadow-blur: inset 0 0 13px 0 #ffffff;
+  --shadow-blur: 0 0 13px 0 #ffffff;
 }
 
 body {
@@ -39,8 +42,8 @@ body {
   width: 2px;
   height: 300px;
   background: linear-gradient(white, rgba(255, 255, 255, 0));
-  animation: meteor 5s linear infinite;
   border-radius: 10px;
+  animation: meteor 5s linear infinite;
 }
 
 /* Event Card hover effects */
