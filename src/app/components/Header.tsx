@@ -11,7 +11,7 @@ type LinkT = {
 export default function Header() {
   const links: LinkT[] = [
     { name: 'Features', href: '/features' },
-    { name: 'Events', href: '/events' },
+    { name: 'Events', href: '/dashboard/events' },
     { name: 'Community (soon)', href: '/community' },
   ];
 
