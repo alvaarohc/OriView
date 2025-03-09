@@ -12,7 +12,6 @@ import clsx from 'clsx';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  console.log(path);
   const links = [
     {
       href: '/dashboard/events',
@@ -31,10 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
    */
   const activeLinkClass = `bg-accent-dark/30 font-bold before:content-[''] before:block before:absolute before:bg-accent-dark
      before:h-full before:w-2 before:top-0 before:left-0 before:rounded-e-sm`;
-
   const linkClass = 'flex justify-between p-3 text-lg relative';
-
-  console.log(path.split('/'));
 
   return (
     <div className="flex h-screen w-screen">

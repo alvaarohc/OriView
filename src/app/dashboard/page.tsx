@@ -1,6 +1,5 @@
 import { getUser } from '@/actions/user';
 import { redirect } from 'next/navigation';
-import UnderConstructionMessage from '../components/ui/UnderConstruction';
 import Link from '../components/ui/Link';
 
 export default async function DashboardPage() {

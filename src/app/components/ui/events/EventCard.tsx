@@ -1,4 +1,5 @@
 import { EclipseData } from '@/types/schemas.valibot';
+import clsx from 'clsx';
 import Link from 'next/link';
 
 type EventCardProps = {
@@ -9,6 +10,7 @@ type EventCardProps = {
   icon?: React.ReactNode;
   href?: string;
   onClick?: () => void | ((eclipse: EclipseData) => void);
+  isSkeleton?: boolean;
 };
 
 /**
@@ -22,6 +24,7 @@ type EventCardProps = {
  * @param icon Optionally the icon to display on the event card
  * @param href The href to link to (optional)
  * @param onClick The onClick event for the card (optional)
+ * @param isSkeleton Whether to show a skeleton loader
  */
 export default function EventCard({
   title,
@@ -31,6 +34,7 @@ export default function EventCard({
   icon,
   href,
   onClick,
+  isSkeleton = false,
 }: EventCardProps) {
   // If it has a href, use a Link component, otherwise use a div
   {
@@ -51,7 +55,9 @@ export default function EventCard({
       </Link>
     ) : (
       <div
-        className={`shadow-card relative bg-primary ${bgColor} flex justify-between items-center p-10 rounded-lg event-card`}
+        className={`${clsx({
+          'animate-pulse': isSkeleton,
+        })} shadow-card relative bg-primary ${bgColor} flex justify-between items-center p-10 rounded-lg event-card`}
       >
         {pointer && (
           <span className="absolute bg-accent-dark -top-1.5 -right-1.5 w-5 h-5 rounded-full before:content-[''] before:w-5 before:h-5 before:bg-accent-dark before:absolute before:rounded-full before:animate-ping"></span>
