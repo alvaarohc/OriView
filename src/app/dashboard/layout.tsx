@@ -12,7 +12,7 @@ import clsx from 'clsx';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-
+  console.log(path);
   const links = [
     {
       href: '/dashboard/events',
@@ -27,19 +27,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   ];
 
   /*
-   * Link classes are into variables because of the length
-   * that they have to make the file more readable
+   * Link classes are into variables to make the file more readable.
    */
   const activeLinkClass = `bg-accent-dark/30 font-bold before:content-[''] before:block before:absolute before:bg-accent-dark
      before:h-full before:w-2 before:top-0 before:left-0 before:rounded-e-sm`;
 
   const linkClass = 'flex justify-between p-3 text-lg relative';
 
+  console.log(path.split('/'));
+
   return (
     <div className="flex h-screen w-screen">
       <header className="flex flex-col bg-secondary-dark ">
         <div className="flex items-center gap-10 p-10">
-          <Link href='/dashboard' className="text-3xl font-black">Dashboard</Link>
+          <Link href="/dashboard" className="text-3xl font-black">
+            Dashboard
+          </Link>
           <button type="button" className="cursor-pointer">
             <IconLayoutSidebarLeftCollapseFilled size={36} />
           </button>
@@ -50,7 +53,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               key={link.name}
               href={link.href}
               className={`${clsx(
-                link.href === path && activeLinkClass
+                link.href.split('/')[2] === path.split('/')[2] &&
+                  activeLinkClass
               )} ${linkClass}`}
             >
               <div className="flex gap-2 items-center">
@@ -60,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <IconChevronRight
                 size={28}
                 className={`transition-transform duration-300 ${clsx(
-                  link.href === path && 'rotate-180'
+                  link.href.split('/')[2] === path.split('/')[2] && 'rotate-180'
                 )}`}
               />
             </Link>
