@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { EclipseDataResponseSchema } from '@/types/schemas.valibot';
+import { safeParse } from 'valibot';
 
 const BASE_URL = 'https://www.datastro.eu/api/explore/v2.1/catalog/datasets';
 
@@ -11,7 +13,14 @@ export async function getUpcomingEclipses(endYear: number) {
     query
   )}&order_by=${encodeURIComponent(sorting)}&limit=-1`;
 
-  const { data } = await axios(url);
+  const {
+    data: { results },
+  } = await axios(url);
 
-  return data;
+  // Validation with Valibot before returning the data
+  const result = safeParse(EclipseDataResponseSchema, results);
+
+  if (result.success) {
+    return result.output;
+  }
 }
