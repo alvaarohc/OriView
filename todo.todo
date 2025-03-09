@@ -1,6 +1,3 @@
-✔ Add vercel.json with no auto deploy on main branch @done(25-02-04 21:16)
-
-
 Landing:
     ✔ Add active state for nav links @done(25-02-12 19:09)
             ✔ Create link component (with a class prop to customize what ever you might need) @done(25-02-12 19:09)
@@ -15,12 +12,12 @@ Landing:
         ✔ Change gap for links in mobile view @high @done(25-02-12 11:42)
 App:
     Accounts:
-        sign up/in flow:
-            ✔ Create pages (sign up and sign in) @done(25-02-15 20:19)
-            Form:
-                ☐ Add form validation with "react hook form" @low @due-to:13-02-2025
-                ✔ Create input component @high @done(25-02-16 23:25)
-                ☐ Add "Account succesfuly created" message in sign in page if url param is present
+        Form:
+            ☐ Add form validation with "react hook form" @low
+            ✔ Create input component @high @done(25-02-16 23:25)
+            ☐ Add "Account succesfuly created" message in sign in page if url param is present
+        Sign up user flow: @high
+                ☐ Add account details page after account creation (to add name, last name, etc)
         Supabase integration:
             ✔ Add supabase to the project (supabase client and server) @critical @done(25-02-16 23:25)
             ✔ Fix bad sign in errors @done(25-02-19 19:39)
@@ -29,6 +26,7 @@ App:
     Events Page:
         ☐ Add <Suspense /> for each "Widget" on the page that uses external data
         ✔ Add valibot for eclipse data @done(25-03-09 16:05)
+        ☐ Add zustand to save the data from the events to then use it into other pages with out fetching it again
 AFTER MVP TASKS:
     ☐ Page transitions
     

@@ -38,6 +38,7 @@ export default async function EventsPage() {
                     bgColor="bg-secondary"
                     pointer={false}
                     icon={<IconArrowUpRight size={40} />}
+                    href={`/dashboard/events/${eclipse.catalog_number}`}
                   />
                 )
               )}
