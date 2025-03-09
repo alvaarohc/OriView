@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function UnderConstructionMessage() {
   return (
-    <article className="flex flex-col gap-5 items-center">
+    <article className="flex flex-col gap-5 items-center justify-center h-full">
       <div className="flex gap-5 items-center justify-center bg-red-500 p-4 rounded-xl">
         <IconBarrierBlockFilled size={50} />
         <h1 className="text-2xl text-center font-bold">
