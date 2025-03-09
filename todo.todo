@@ -27,6 +27,8 @@ App:
         ☐ Add <Suspense /> for each "Widget" on the page that uses external data
         ✔ Add valibot for eclipse data @done(25-03-09 16:05)
         ☐ Add zustand to save the data from the events to then use it into other pages with out fetching it again
+        Event page: 
+            ☐ Add breadcrumb
 AFTER MVP TASKS:
     ☐ Page transitions
     

@@ -1,8 +1,8 @@
 import Widget from '@/app/components/ui/Widget';
 import { getUpcomingEclipses } from '@/app/api/services/eventsService';
-import EventCard from '@/app/components/ui/EventCard';
 import { IconArrowUpRight } from '@tabler/icons-react';
 import Link from 'next/link';
+import EventWraper from '@/app/components/ui/events/EventWraper';
 
 export default async function EventsPage() {
   const eclipseResults = await getUpcomingEclipses(2026);
@@ -23,25 +23,18 @@ export default async function EventsPage() {
       <main className="grid grid-cols-1 gap-5 h-full">
         <Widget title="Upcoming Events" headerBtn={headerBtn}>
           <div className="flex flex-col gap-5 card-container">
-            <div
-              id="eclipse-cards"
-              className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
-            >
-              {eclipseResults && eclipseResults.map(
-                (
-                  eclipse // TODO - Add valibot validation for eclipseResults
-                ) => (
-                  <EventCard
-                    key={eclipse.catalog_number}
-                    title={eclipse.ecl_type}
-                    date={`${eclipse.calendar_month} ${eclipse.calendar_day}, ${eclipse.calendar_year}`}
-                    bgColor="bg-secondary"
-                    pointer={false}
-                    icon={<IconArrowUpRight size={40} />}
-                    href={`/dashboard/events/${eclipse.catalog_number}`}
-                  />
-                )
-              )}
+            <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+              {eclipseResults &&
+                eclipseResults.map(
+                  (
+                    eclipse // TODO - Add valibot validation for eclipseResults
+                  ) => (
+                    <EventWraper
+                      key={eclipse.catalog_number}
+                      eclipse={eclipse}
+                    />
+                  )
+                )}
             </div>
           </div>
         </Widget>

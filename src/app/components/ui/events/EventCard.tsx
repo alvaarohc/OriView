@@ -1,3 +1,4 @@
+import { EclipseData } from '@/types/schemas.valibot';
 import Link from 'next/link';
 
 type EventCardProps = {
@@ -7,6 +8,7 @@ type EventCardProps = {
   pointer?: boolean;
   icon?: React.ReactNode;
   href?: string;
+  onClick?: () => void | ((eclipse: EclipseData) => void);
 };
 
 /**
@@ -18,6 +20,8 @@ type EventCardProps = {
  * @param bgColor The background color of the event card
  * @param pointer Whether to show a pointer on the event card
  * @param icon Optionally the icon to display on the event card
+ * @param href The href to link to (optional)
+ * @param onClick The onClick event for the card (optional)
  */
 export default function EventCard({
   title,
@@ -26,6 +30,7 @@ export default function EventCard({
   pointer = true,
   icon,
   href,
+  onClick,
 }: EventCardProps) {
   // If it has a href, use a Link component, otherwise use a div
   {
@@ -33,6 +38,7 @@ export default function EventCard({
       <Link
         href={href}
         className={`shadow-card relative bg-primary ${bgColor} flex justify-between items-center p-10 rounded-lg event-card`}
+        onClick={onClick}
       >
         {pointer && (
           <span className="absolute bg-accent-dark -top-1.5 -right-1.5 w-5 h-5 rounded-full before:content-[''] before:w-5 before:h-5 before:bg-accent-dark before:absolute before:rounded-full before:animate-ping"></span>

@@ -1,4 +1,4 @@
-import EventCard from './ui/EventCard';
+import EventCard from './ui/events/EventCard';
 
 type EventT = {
   title: string;
