@@ -1,4 +1,4 @@
-import UpcomingEventsSk from '@/app/components/skeletons/UpcomingEventsSk';
+import UpcomingEventsSk from '@/app/components/skelletons/UpcomingEventsSk';
 import Widget from '@/app/components/ui/Widget';
 import UpcomingEvents from '@/app/components/UpcomingEvents';
 import { Suspense } from 'react';
