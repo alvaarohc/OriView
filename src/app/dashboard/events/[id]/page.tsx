@@ -22,7 +22,7 @@ export default function EventPage({ params }: EventPageProps) {
 
   return selectedEclipse ? (
     <section className="h-full flex justify-center flex-col gap-4">
-      <Breadcrumb />
+      <Breadcrumb replacement={selectedEclipse.ecl_type} />
       <h1 className="font-black text-4xl">{selectedEclipse?.ecl_type}</h1>
       <article className="flex flex-col gap-2 bg-secondary-lighter text-primary text-2xl p-10 rounded-lg">
         <p>

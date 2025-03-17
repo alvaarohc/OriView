@@ -28,7 +28,8 @@ App:
         ✔ Add valibot for eclipse data @done(25-03-09 16:05)
         ✔ Add zustand to save the data from the events to then use it into other pages with out fetching it again @done(25-03-09 23:39)
         Event page: 
-            ☐ Add breadcrumb
+            ✔ Add breadcrumb @done(25-03-17 16:42)
+            ☐ Add persist to eclipseStore to make data persistent on refresh
 AFTER MVP TASKS:
     ☐ Page transitions
     
