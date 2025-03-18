@@ -20,7 +20,7 @@ export default function Header() {
       <div className="flex items-center gap-3">
         <Image
           className="rounded-lg"
-          src="oriview-logo.svg"
+          src="icons/icon-graphic.png"
           alt="OriView Logo"
           width={50}
           height={50}
