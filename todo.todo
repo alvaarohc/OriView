@@ -1,3 +1,6 @@
+Others:
+    ☐ Change the copyright date to be dynamic @low
+
 Landing:
     ✔ Add active state for nav links @done(25-02-12 19:09)
             ✔ Create link component (with a class prop to customize what ever you might need) @done(25-02-12 19:09)

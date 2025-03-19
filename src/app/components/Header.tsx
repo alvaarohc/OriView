@@ -19,11 +19,11 @@ export default function Header() {
     <header className="flex lg:flex-row lg:gap-0 gap-8 flex-col justify-between items-center py-4 px-10.5">
       <div className="flex items-center gap-3">
         <Image
-          className="rounded-lg"
-          src="icons/icon-graphic.png"
+          className="rounded-lg invert"
+          src="/icons/icon-graphic.png"
           alt="OriView Logo"
-          width={50}
-          height={50}
+          width={60}
+          height={60}
         />
         <h1 className="text-2xl font-black">OriView</h1>
       </div>
