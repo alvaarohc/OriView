@@ -1,5 +1,5 @@
 <div align="center">
-<img style="background: #FFF;" width="300px" height="300px" src="public/icons/icon-horizontal.png" alt="oriview logo" /> 
+<img style="background: #FFF;" width="300px" height="300px" src="public/icons/white-bg-icon-horizontal.png" alt="oriview logo" /> 
 <p>
   A platform to discover, track, and share astronomical events.
  </p>
