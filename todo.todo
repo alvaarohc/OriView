@@ -11,6 +11,7 @@ Landing:
         ✔ Card hover effect @done(25-02-12 12:11)
     Current Events:
         ✔ Add red point with animation @done(25-02-10 18:45)
+        ☐ Make dynamic using API calls @low
     Footer:
         ✔ Change gap for links in mobile view @high @done(25-02-12 11:42)
 App:

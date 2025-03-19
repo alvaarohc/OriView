@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'OriView - Into the Stars',
   description: 'Discover, track, and share astronomical events.',
   icons: {
-    icon: '/oriview-logo.jpg',
+    icon: '/icons/icon-graphic.png',
   },
 };
 
