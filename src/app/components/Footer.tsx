@@ -35,13 +35,13 @@ export default function Footer() {
     <footer className="flex lg:flex-row flex-col lg:gap-0 gap-15 justify-evenly items-center bg-secondary-dark px-20 py-30 relative">
       <span className="bg-accent-dark rounded-[50%] blur-2xl -z-10 w-full h-full absolute top-0 right-0"></span>
       <article className="flex flex-col gap-1 text-center">
-        <div className="flex justify-center gap-2">
+        <div className="flex justify-center items-center gap-2">
           <Image
-            className="rounded-lg"
-            src="/oriview-logo.svg"
+            className="rounded-lg invert"
+            src="/icons/icon-graphic.png"
             alt="OriView logo"
-            width={26}
-            height={26}
+            width={40}
+            height={40}
           />
           <h1 className="font-black text-lg">OriView</h1>
         </div>
