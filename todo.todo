@@ -20,6 +20,7 @@ App:
             ☐ Add form validation with "react hook form" @low
             ✔ Create input component @high @done(25-02-16 23:25)
             ☐ Add "Account succesfuly created" message in sign in page if url param is present
+            ☐ Create dynamic form component (signup/signin/other forms) @low
         Sign up user flow: @high
                 ☐ Add account details page after account creation (to add name, last name, etc)
         Supabase integration:
@@ -34,6 +35,7 @@ App:
         Event page: 
             ✔ Add breadcrumb @done(25-03-17 16:42)
             ☐ Add persist to eclipseStore to make data persistent on refresh
+            ☐ Loading state component (reusable component for other pages)
 AFTER MVP TASKS:
     ☐ Page transitions
     
