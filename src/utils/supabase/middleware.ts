@@ -15,7 +15,7 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
+          cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           );
           supabaseResponse = NextResponse.next({
@@ -39,13 +39,37 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/signin')
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+  // Add public and auth routes that should bypass middleware checks
+  const path = request.nextUrl.pathname;
+  const isPublicRoute = ['/'].includes(request.nextUrl.pathname);
+  const isAuthRoute = path.startsWith('/signin');
+  const isProtectedRoute = path.startsWith('/dashboard');
+
+  // Skip middleware checks for auth routes to prevent redirect loops
+  if (isAuthRoute || isPublicRoute) {
+    return supabaseResponse;
+  }
+
+  let userName = '';
+  if (user) {
+    const {
+      data: { username },
+    } = await supabase
+      .from('user_profiles')
+      .select()
+      .match({ id: user?.id })
+      .single();
+
+    userName = username;
+  }
+
+  if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone();
     url.pathname = '/signin';
+    return NextResponse.redirect(url);
+  } else if (user && !userName) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/signin/account-details';
     return NextResponse.redirect(url);
   }
 
