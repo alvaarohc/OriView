@@ -2,13 +2,16 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from '@/app/components/ui/Link';
 import NextLink from 'next/link';
+import { getUser } from '@/actions/user';
 
 type LinkT = {
   name: string;
   href: string;
 };
 
-export default function Header() {
+export default async function Header() {
+  const user = await getUser();
+
   const links: LinkT[] = [
     { name: 'Features', href: '/features' },
     { name: 'Events', href: '/dashboard/events' },
@@ -43,7 +46,7 @@ export default function Header() {
       </nav>
 
       <NextLink href='/signup' className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
-        Sign up
+        {user ? "Dashboard" : "Sign up"}
       </NextLink>
     </header>
   );
