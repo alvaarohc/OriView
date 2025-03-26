@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import SignUp from './SignUp';
+import SignUp from './signupForm';
 
 export default function Page() {
   return (

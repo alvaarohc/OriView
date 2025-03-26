@@ -1,42 +1,46 @@
-Others:
-    ☐ Change the copyright date to be dynamic @low
+Current Priorities:
+    Authentication & User Flow:
+        ✔ Create "Add account details" page and to redirect after account creation (username) @done(25-03-26 18:51)
+        ✔ Add "Account successfully created" message in sign in page @done(25-03-26 18:52)
+        ☐ Fix form layout responsiveness
 
-Landing:
-    ✔ Add active state for nav links @done(25-02-12 19:09)
-            ✔ Create link component (with a class prop to customize what ever you might need) @done(25-02-12 19:09)
-    ✔ Change Sign up buttons for <Link /> components @done(25-02-12 19:15)
-    Header:
-        ✔ Cursor pointer for Sign up button @done(25-02-12 11:44)
-    Events:
-        ✔ Card hover effect @done(25-02-12 12:11)
-    Current Events:
-        ✔ Add red point with animation @done(25-02-10 18:45)
-        ☐ Make dynamic using API calls @low
-    Footer:
-        ✔ Change gap for links in mobile view @high @done(25-02-12 11:42)
-App:
-    Accounts:
-        Form:
-            ☐ Add form validation with "react hook form" @low
-            ✔ Create input component @high @done(25-02-16 23:25)
-            ☐ Add "Account succesfuly created" message in sign in page if url param is present
-            ☐ Fix form layout, make it respond better to different device sizes
-            ☐ Create dynamic form component (signup/signin/other forms) @low
-        Sign up user flow: @high
-                ☐ Add account details page after account creation (to add name, last name, etc)
-        Supabase integration:
-            ✔ Add supabase to the project (supabase client and server) @critical @done(25-02-16 23:25)
-            ✔ Fix bad sign in errors @done(25-02-19 19:39)
-    Dashboard:
-        ✔ Add action to get user and redirect to sign in if no session is found @done(25-03-07 16:18)
-    Events Page:
-        ✔ Add <Suspense /> for each "Widget" on the page that uses external data @done(25-03-13 19:10)
-        ✔ Add valibot for eclipse data @done(25-03-09 16:05)
-        ✔ Add zustand to save the data from the events to then use it into other pages with out fetching it again @done(25-03-09 23:39)
-        Event page: 
-            ✔ Add breadcrumb @done(25-03-17 16:42)
-            ☐ Add persist to eclipseStore to make data persistent on refresh
-            ☐ Loading state component (reusable component for other pages)
-AFTER MVP TASKS:
-    ☐ Page transitions
-    
+    Forms & Validation:
+        ☐ Add form validation with "react hook form" @current
+        ☐ Create dynamic form component (signup/signin/other forms)
+
+    Events System:
+        ☐ Make all event related components dynamic so that they can accept any kind of event data @high
+        ☐ Add new events (comets, meteor showers, etc.)
+        ☐ Add persist to eclipseStore for data persistence
+        ☐ Add loading state component (reusable)
+        
+        Low Priority:
+    ☐ Change copyright date to be dynamic
+    ☐ Page transitions (post-MVP)
+
+Technical Debt & Improvements:
+    ☐ Create dynamic form component for better reusability
+    ☐ Optimize data fetching patterns
+    ☐ Review and improve error handling
+
+# Completed Tasks Archive:
+# Authentication:
+#   ✔ Add supabase integration @done
+#   ✔ Fix bad sign in errors @done
+#   ✔ Create input component @done
+#   ✔ Add action to get user and redirect to sign in @done
+
+# Events System:
+#   ✔ Add <Suspense /> for Widgets @done
+#   ✔ Add valibot for eclipse data @done
+#   ✔ Add zustand for event data management @done
+#   ✔ Add breadcrumb to event page @done
+
+# UI/UX:
+#   ✔ Add active state for nav links @done
+#   ✔ Create link component with class prop @done
+#   ✔ Change Sign up buttons to <Link /> @done
+#   ✔ Add cursor pointer for Sign up button @done
+#   ✔ Implement card hover effect @done
+#   ✔ Add red point animation @done
+#   ✔ Fix footer links gap in mobile @done
