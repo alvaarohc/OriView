@@ -45,8 +45,8 @@ export default async function Header() {
         ))}
       </nav>
 
-      <NextLink href='/signup' className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
-        {user ? "Dashboard" : "Sign up"}
+      <NextLink href={user ? "/dashboard" : "/signin"} className="bg-accent hover:bg-accent-dark text-secondary font-black px-4 py-2 transition-all duration-250 rounded-lg cursor-pointer">
+        {user ? "Dashboard" : "Sign in"}
       </NextLink>
     </header>
   );
