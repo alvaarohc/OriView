@@ -125,7 +125,7 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/signin?signupsuccess=true');
+  redirect('/signin?acc_created=true');
 }
 
 export async function logout() {

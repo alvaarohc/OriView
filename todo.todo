@@ -20,6 +20,7 @@ App:
             ☐ Add form validation with "react hook form" @low
             ✔ Create input component @high @done(25-02-16 23:25)
             ☐ Add "Account succesfuly created" message in sign in page if url param is present
+            ☐ Fix form layout, make it respond better to different device sizes
             ☐ Create dynamic form component (signup/signin/other forms) @low
         Sign up user flow: @high
                 ☐ Add account details page after account creation (to add name, last name, etc)
