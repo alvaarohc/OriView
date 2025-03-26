@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import FormInput from '../components/ui/FormInput';
 import { signin } from '@/actions/user';
 import { v4 as uuid } from 'uuid';
@@ -11,8 +11,6 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState(['']);
-  const params = useSearchParams();
-  const isFirstSignUp = params.get('acc_created');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -32,18 +30,35 @@ export default function SignIn() {
     }
   };
 
+  function SignupMessage() {
+    const params = useSearchParams();
+    const isFirstSignUp = params.get('acc_created');
+
+    if (!isFirstSignUp) return null;
+
+    return (
+      <div className="bg-green-500 text-text text-center p-2 rounded-lg">
+        <h2 className="text-xl font-bold">Account created!</h2>
+        <p className="text-lg">Check your email to verify your account.</p>
+      </div>
+    );
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col items-center justify-center gap-4 py-10 px-8 bg-secondary-dark lg:w-1/2 w-[80%] h-[60%]  rounded-lg"
     >
       <h1 className="text-3xl font-black text-center">Sign in</h1>
-      {isFirstSignUp && (
-        <div className="bg-green-500 text-text text-center p-2 rounded-lg">
-          <h2 className="text-xl font-bold">Account created!</h2>
-          <p className="text-lg">Check your email to verify your account.</p>
-        </div>
-      )}
+      <Suspense
+        fallback={
+          <div className="bg-green-500 text-text text-center p-2 rounded-lg">
+            <h2 className="text-xl font-bold">Loading message...</h2>
+          </div>
+        }
+      >
+        <SignupMessage />
+      </Suspense>
       <div className="errors space-y-3">
         {errors[0] &&
           errors.map((error) => <FormError key={uuid()} error={error} />)}
