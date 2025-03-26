@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import Stars from '../components/Stars';
 import Link from 'next/link';
-import { IconHome } from '@tabler/icons-react';
+import { IconArrowLeft } from '@tabler/icons-react';
 import { Suspense } from 'react';
 
 function ErrorMessage() {
@@ -21,7 +21,7 @@ export default function ErrorPage() {
   return (
     <main className="bg-secondary overflow-hidden relative h-screen">
       <Stars />
-      <section className="h-[80%] z-10 relative flex flex-col items-center justify-center gap-4">
+      <section className="h-full z-10 relative flex flex-col items-center justify-center gap-4">
         <Suspense
           fallback={
             <h1 className="p-3 text-center bg-red-500 text-text text-2xl font-bold rounded-lg">
@@ -34,9 +34,10 @@ export default function ErrorPage() {
 
         <Link
           href="/"
-          className="bg-accent hover:bg-accent-dark transition-all duration-300 text-secondary-dark font-bold text-xl p-2 rounded-lg cursor-pointer"
+          className="flex items-center gap-2 bg-accent hover:bg-accent-dark transition-all duration-300 text-secondary-dark font-bold text-xl p-2 rounded-lg cursor-pointer"
         >
-          <IconHome size={40} />
+          <IconArrowLeft size={26} stroke={2.5} />  
+          Go back
         </Link>
       </section>
     </main>
