@@ -33,13 +33,18 @@ export default function SignIn() {
   function SignupMessage() {
     const params = useSearchParams();
     const isFirstSignUp = params.get('acc_created');
+    const isVerifiedSucces = params.get('acc_verified');
 
-    if (!isFirstSignUp) return null;
+    if (!isFirstSignUp && !isVerifiedSucces) return null;
 
-    return (
-      <div className="bg-green-500 text-text text-center p-2 rounded-lg">
+    return isFirstSignUp ? (
+      <div className="bg-green-500/90 text-text text-center p-2 rounded-lg">
         <h2 className="text-xl font-bold">Account created!</h2>
         <p className="text-lg">Check your email to verify your account.</p>
+      </div>
+    ) : (
+      <div className="bg-green-500/90 text-text text-center p-2 rounded-lg">
+        <h2 className="text-xl font-bold">Account verified!</h2>
       </div>
     );
   }
