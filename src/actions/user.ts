@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { SignUpInputs } from '@/types';
 
 // DB tables
 const tables = {
@@ -95,16 +96,9 @@ export async function signin(formData: FormData) {
   }
 }
 
-export async function signup(formData: FormData) {
+// @TODO: add validation
+export async function signup(data: SignUpInputs) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // @TODO: add validation
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
 
   const { error } = await supabase.auth.signUp(data);
 
@@ -114,10 +108,15 @@ export async function signup(formData: FormData) {
    */
 
   if (error) {
+    console.log(error.message);
     let customMessage = 'An error occurred, please try again.';
 
-    if (error.message.includes('Anonymous sign-ins are disabled')) {
-      customMessage = 'You must provide an email and password.';
+    if (
+      error.message.includes(
+        'Password should contain at least one character of each'
+      )
+    ) {
+      customMessage = 'Password must contain: Uppercase and lowercase characters, numbers and symbols.';
     }
     return {
       error: { message: customMessage },
