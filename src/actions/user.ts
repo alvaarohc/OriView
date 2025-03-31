@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { SignUpInputs } from '@/types';
+import { SignInInputs, SignUpInputs } from '@/types';
 
 // DB tables
 const tables = {
@@ -64,21 +64,15 @@ export async function setProfileName(formData: FormData) {
   }
 }
 
-export async function signin(formData: FormData) {
+// @TODO: add validation
+export async function signin(data: SignInInputs) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // @TODO: add validation
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
   // display a different message than the supabase's default message for missing password
   if (error) {
+    console.log(error.message);
     let customMessage = 'An error occurred, please try again.';
 
     if (error.message.includes('Invalid login credentials')) {
@@ -116,7 +110,8 @@ export async function signup(data: SignUpInputs) {
         'Password should contain at least one character of each'
       )
     ) {
-      customMessage = 'Password must contain: Uppercase and lowercase characters, numbers and symbols.';
+      customMessage =
+        'Password must contain: Uppercase and lowercase characters, numbers and symbols.';
     }
     return {
       error: { message: customMessage },
