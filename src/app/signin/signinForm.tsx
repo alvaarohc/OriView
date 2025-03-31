@@ -45,7 +45,7 @@ export default function SignIn() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center gap-4 py-10 p-8 bg-secondary-dark lg:w-1/2 w-[80%] h-auto  rounded-lg"
+      className="flex flex-col items-center justify-center gap-4 p-10 bg-secondary-dark lg:w-1/2 w-[80%] h-auto  rounded-lg"
     >
       <h1 className="text-3xl font-black text-center mb-4">Sign in</h1>
 

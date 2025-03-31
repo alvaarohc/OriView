@@ -8,7 +8,6 @@ import { v4 as uuid } from 'uuid';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { SignUpInputs } from '@/types';
 
-
 export default function SignUp() {
   const {
     handleSubmit,
@@ -18,7 +17,6 @@ export default function SignUp() {
   const [authErrors, setAuthErrors] = useState(['']);
 
   const onSubmit: SubmitHandler<SignUpInputs> = async (data) => {
-
     const { error } = await signup(data);
 
     // Supabase auth errors
@@ -31,19 +29,28 @@ export default function SignUp() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center gap-4 py-10 px-8 bg-secondary-dark lg:w-1/2 w-[80%] md:min-h-1/3 h-1/2  rounded-lg"
+      className="flex flex-col items-center justify-center gap-4 p-10 bg-secondary-dark lg:w-1/2 w-[80%] h-auto  rounded-lg"
     >
-      <h1 className="text-3xl font-black text-center">Sign up</h1>
-      <div id="form-errors" className="errors space-y-3">
-        {formErrors &&
-          Object.values(formErrors).map((error) => (
+      <h1 className="text-3xl font-black text-center mb-4">Sign up</h1>
+
+      {/* Form messages */}
+      {Object.values(formErrors).length != 0 && (
+        <div id="form-errors" className="errors space-y-3">
+          {Object.values(formErrors).map((error) => (
             <FormError key={uuid()} error={error.message!} />
           ))}
-      </div>
-      <div id="auth-errors" className="errors space-y-3">
-        {authErrors[0] &&
-          authErrors.map((error) => <FormError key={uuid()} error={error} />)}
-      </div>
+        </div>
+      )}
+
+      {authErrors[0] && (
+        <div id="auth-errors" className="errors space-y-3">
+          {authErrors.map((error) => (
+            <FormError key={uuid()} error={error} />
+          ))}
+        </div>
+      )}
+
+      {/* Form inputs */}
       <div className="form-inputs w-full flex flex-col gap-4">
         <FormInput
           {...register('email', {
