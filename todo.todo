@@ -2,10 +2,11 @@ Current Priorities:
     Authentication & User Flow:
         ✔ Create "Add account details" page and to redirect after account creation (username) @done(25-03-26 18:51)
         ✔ Add "Account successfully created" message in sign in page @done(25-03-26 18:52)
-        ☐ Fix form layout responsiveness
+        ✔ Fix form layout responsiveness @done(25-03-31 20:11)
+        ☐ Move route /api/auth... to /auth...
 
     Forms & Validation:
-        ☐ Add form validation with "react hook form" @current
+        ✔ Add form validation with "react hook form" @done(25-04-01 20:12)
         ☐ Create dynamic form component (signup/signin/other forms)
 
     Events System:

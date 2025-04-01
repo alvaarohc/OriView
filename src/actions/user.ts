@@ -4,7 +4,12 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { SignInInputs, SignUpInputs, UserNameFormInputs } from '@/types';
+import {
+  ResetPasswordInputs,
+  SignInInputs,
+  SignUpInputs,
+  UserNameFormInputs,
+} from '@/types';
 
 // DB tables
 const tables = {
@@ -21,7 +26,6 @@ export async function setProfileName(formData: UserNameFormInputs) {
 
   let userId = '';
   const userName = formData.username;
-  
 
   if (user) {
     userId = user.id;
@@ -79,7 +83,6 @@ export async function signup(data: SignUpInputs) {
    */
 
   if (error) {
-    console.log(error.message);
     let customMessage = 'An error occurred, please try again.';
 
     if (
@@ -97,6 +100,58 @@ export async function signup(data: SignUpInputs) {
 
   revalidatePath('/', 'layout');
   redirect('/signin?acc_created=true');
+}
+
+export async function sendResetPasswordEmail(
+  data: Pick<ResetPasswordInputs, 'email'>
+) {
+  const response = {
+    error: { message: '' },
+    success: {
+      status: false,
+    },
+  };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resetPasswordForEmail(data.email);
+
+  if (error) {
+    response.error = { message: error.message };
+    return response;
+  } else {
+    response.success = {
+      status: true,
+    };
+    return response;
+  }
+}
+
+export async function resetPassword(data: ResetPasswordInputs['newPassword']) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.updateUser({
+    password: data,
+  });
+
+  if (!error) {
+    revalidatePath('/', 'layout');
+    redirect('/dashboard?passwordreset=true');
+  } else {
+    console.log(error.message);
+    let customMessage = error.message;
+
+    if (
+      error.message.includes(
+        'Password should contain at least one character of each'
+      )
+    ) {
+      customMessage =
+        'Password must contain: Uppercase and lowercase characters, numbers and symbols.';
+    }
+    return {
+      error: { message: customMessage },
+    };
+  }
 }
 
 export async function logout() {

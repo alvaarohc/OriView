@@ -11,3 +11,10 @@ export type SignInInputs = {
 export type UserNameFormInputs = {
   username: string;
 }
+
+export type ResetPasswordInputs = {
+  email: string;
+  newPassword: string;
+  repeatPassword: string;
+};
+
