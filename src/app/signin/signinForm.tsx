@@ -6,31 +6,28 @@ import { signin } from '@/actions/user';
 import { v4 as uuid } from 'uuid';
 import FormError from '../components/ui/FormError';
 import { useSearchParams } from 'next/navigation';
+import { SignInInputs } from '@/types';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState(['']);
+  const [authErrors, setAuthErrors] = useState(['']);
+  const {
+    register,
+    formState: { errors: formErrors },
+    handleSubmit,
+  } = useForm<SignInInputs>();
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
+    const { error } = await signin(data);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const { error } = await signin(formData);
-
+    // Supabase auth errors
     if (error) {
       const errors = error.message.split('. ');
-      setErrors(errors);
+      setAuthErrors(errors);
     }
   };
 
-  function SignupMessage() {
+  function AccountCreatedMessage() {
     const params = useSearchParams();
     const isFirstSignUp = params.get('acc_created');
     const isVerifiedSucces = params.get('acc_verified');
@@ -42,19 +39,17 @@ export default function SignIn() {
         <h2 className="text-xl font-bold">Account created!</h2>
         <p className="text-lg">Check your email to verify your account.</p>
       </div>
-    ) : (
-      <div className="bg-green-500/90 text-text text-center p-2 rounded-lg">
-        <h2 className="text-xl font-bold">Account verified!</h2>
-      </div>
-    );
+    ) : null;
   }
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center justify-center gap-4 py-10 px-8 bg-secondary-dark lg:w-1/2 w-[80%] h-[60%]  rounded-lg"
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col items-center justify-center gap-4 p-10 bg-secondary-dark lg:w-1/2 w-[80%] h-auto  rounded-lg"
     >
-      <h1 className="text-3xl font-black text-center">Sign in</h1>
+      <h1 className="text-3xl font-black text-center mb-4">Sign in</h1>
+
+      {/* Form messages */}
       <Suspense
         fallback={
           <div className="bg-green-500 text-text text-center p-2 rounded-lg">
@@ -62,26 +57,40 @@ export default function SignIn() {
           </div>
         }
       >
-        <SignupMessage />
+        <AccountCreatedMessage />
       </Suspense>
-      <div className="errors space-y-3">
-        {errors[0] &&
-          errors.map((error) => <FormError key={uuid()} error={error} />)}
-      </div>
+
+      {authErrors[0] && (
+        <div className="errors space-y-3">
+          {authErrors.map((error) => (
+            <FormError key={uuid()} error={error} />
+          ))}
+        </div>
+      )}
+
+      {Object.values(formErrors).length != 0 && (
+        <div className="errors space-y-3">
+          {Object.values(formErrors).map((error) => (
+            <FormError key={uuid()} error={error.message!} />
+          ))}
+        </div>
+      )}
+
+      {/* Form inputs */}
       <div className="w-full flex flex-col gap-4">
         <FormInput
+          {...register('email', {
+            required: 'You must provide an email.',
+          })}
           type="email"
           placeholder="Email"
-          onChange={handleEmailChange}
-          value={email}
-          name="email"
         />
         <FormInput
+          {...register('password', {
+            required: 'You must provide a password.',
+          })}
           type="password"
           placeholder="Password"
-          onChange={handlePasswordChange}
-          value={password}
-          name="password"
         />
         <FormInput
           type="submit"

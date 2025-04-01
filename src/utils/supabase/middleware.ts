@@ -67,9 +67,14 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = '/signin';
     return NextResponse.redirect(url);
-  } else if (user && !userName) {
+  } else if (
+    user &&
+    !userName &&
+    request.nextUrl.pathname !== '/dashboard/account-details'
+  ) {
     const url = request.nextUrl.clone();
-    url.pathname = '/signin/account-details';
+    console.log(url);
+    url.pathname = '/dashboard/account-details';
     return NextResponse.redirect(url);
   }
 

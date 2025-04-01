@@ -4,45 +4,24 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { SignInInputs, SignUpInputs, UserNameFormInputs } from '@/types';
 
 // DB tables
 const tables = {
   profiles: 'user_profiles',
 };
 
-export async function hasProfileName(
-  supabaseClient: SupabaseClient<any, 'public', any>
-) {
-  const {
-    data: { user },
-  } = await supabaseClient.auth.getUser();
-
-  if (user) {
-    const {
-      data: { username },
-    } = await supabaseClient
-      .from(tables.profiles)
-      .select()
-      .match({ id: user.id })
-      .single();
-
-    if (!username) {
-      redirect('/signin/account-details');
-    } else {
-      revalidatePath('/', 'layout');
-      redirect('/dashboard');
-    }
-  }
-}
-
-export async function setProfileName(formData: FormData) {
+export async function setProfileName(formData: UserNameFormInputs) {
   const supabase = await createClient();
+
+  // Get the user from the session
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   let userId = '';
-  const userName = formData.get('user-name');
+  const userName = formData.username;
+  
 
   if (user) {
     userId = user.id;
@@ -63,21 +42,15 @@ export async function setProfileName(formData: FormData) {
   }
 }
 
-export async function signin(formData: FormData) {
+// @TODO: add validation
+export async function signin(data: SignInInputs) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // @TODO: add validation
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
   // display a different message than the supabase's default message for missing password
   if (error) {
+    console.log(error.message);
     let customMessage = 'An error occurred, please try again.';
 
     if (error.message.includes('Invalid login credentials')) {
@@ -90,21 +63,13 @@ export async function signin(formData: FormData) {
       error: { message: customMessage },
     };
   } else {
-    await hasProfileName(supabase);
     return { error: null };
   }
 }
 
-export async function signup(formData: FormData) {
+// @TODO: add validation
+export async function signup(data: SignUpInputs) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // @TODO: add validation
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
 
   const { error } = await supabase.auth.signUp(data);
 
@@ -114,10 +79,16 @@ export async function signup(formData: FormData) {
    */
 
   if (error) {
+    console.log(error.message);
     let customMessage = 'An error occurred, please try again.';
 
-    if (error.message.includes('Anonymous sign-ins are disabled')) {
-      customMessage = 'You must provide an email and password.';
+    if (
+      error.message.includes(
+        'Password should contain at least one character of each'
+      )
+    ) {
+      customMessage =
+        'Password must contain: Uppercase and lowercase characters, numbers and symbols.';
     }
     return {
       error: { message: customMessage },
