@@ -13,7 +13,7 @@ export default function Page() {
           </Link>
         </p>
         <p>
-          <Link href="/">Forgot password?</Link>
+          <Link href="/forgot-password">Forgot password?</Link>
         </p>
       </div>
     </main>
