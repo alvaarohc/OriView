@@ -4,21 +4,25 @@ import { ChangeEvent, Suspense, useState } from 'react';
 import FormInput from '@/app/components/ui/FormInput';
 import { setProfileName } from '@/actions/user';
 import { useSearchParams } from 'next/navigation';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import FormError from '@/app/components/ui/FormError';
+import { UserNameFormInputs } from '@/types';
 
 export default function AccountDetailsPage() {
-  const [userName, setUserName] = useState('');
+  const {
+    register,
+    formState: { errors: formErrors },
+    handleSubmit,
+  } = useForm<UserNameFormInputs>();
 
-  const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
+  const formErrorsObject = Object.values(formErrors);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const { error } = await setProfileName(formData);
+  const onSubmit: SubmitHandler<UserNameFormInputs> = async (data) => {
+    const { error } = await setProfileName(data);
 
     console.log(error);
   };
+
   function VerificationMessage() {
     const params = useSearchParams();
     const isVerifiedSucces = params.get('acc_verified');
@@ -30,7 +34,7 @@ export default function AccountDetailsPage() {
     ) : null;
   }
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
+    <main className="flex flex-col items-center justify-center h-full">
       <Suspense
         fallback={
           <p className="bg-green-500/90 text-text text-center p-2 rounded-lg">
@@ -40,20 +44,35 @@ export default function AccountDetailsPage() {
       >
         <VerificationMessage />
       </Suspense>
+
       <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center gap-4 py-10 px-8 lg:w-1/2 w-[80%] md:min-h-1/3 h-1/2  rounded-lg"
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center justify-center gap-4 lg:w-1/2 w-[80%] h-auto rounded-lg"
       >
         <h1 className="text-3xl font-black text-center">
           How'd you like to be called?
         </h1>
+        {/* Form messages */}
+
+        {formErrorsObject.length != 0 && (
+          <div>
+            {formErrorsObject.map((error) => (
+              <FormError key={error.message} error={error.message!} />
+            ))}
+          </div>
+        )}
+
         <div className="w-full flex flex-col gap-4">
           <FormInput
+            {...register('username', {
+              required: 'You must provide a username.',
+              minLength: {
+                value: 6,
+                message: 'Username must be at least 6 characters.',
+              },
+            })}
             type="text"
-            name="user-name"
             placeholder="Cool user name..."
-            value={userName}
-            onChange={handleUserNameChange}
           />
           <FormInput
             type="submit"

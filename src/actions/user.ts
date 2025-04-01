@@ -4,46 +4,24 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { SignInInputs, SignUpInputs } from '@/types';
+import { SignInInputs, SignUpInputs, UserNameFormInputs } from '@/types';
 
 // DB tables
 const tables = {
   profiles: 'user_profiles',
 };
 
-export async function hasProfileName(
-  supabaseClient: SupabaseClient<any, 'public', any>
-) {
-  const {
-    data: { user },
-  } = await supabaseClient.auth.getUser();
-
-  if (user) {
-    const {
-      data: { username },
-    } = await supabaseClient
-      .from(tables.profiles)
-      .select()
-      .match({ id: user.id })
-      .single();
-
-    if (!username) {
-      redirect('/signin/account-details');
-    } else {
-      revalidatePath('/', 'layout');
-      redirect('/dashboard');
-    }
-  }
-}
-
-export async function setProfileName(formData: FormData) {
+export async function setProfileName(formData: UserNameFormInputs) {
   const supabase = await createClient();
+
+  // Get the user from the session
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   let userId = '';
-  const userName = formData.get('user-name');
+  const userName = formData.username;
+  
 
   if (user) {
     userId = user.id;
@@ -85,7 +63,6 @@ export async function signin(data: SignInInputs) {
       error: { message: customMessage },
     };
   } else {
-    await hasProfileName(supabase);
     return { error: null };
   }
 }
